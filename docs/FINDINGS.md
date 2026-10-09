@@ -50,7 +50,7 @@ A test checks that subscribing to the token, account or state tables is refused.
 - **C# and Rust canonicalise to the same schema** once the C# names are written `Oauth…`, not `OAuth…`.
   `OAuthMyAccounts` would canonicalise to `o_auth_my_accounts`.
 
-## Bug: the TS SDK serializes `Result` errors with the `ok` type
+## Bug: the TS SDK serializes `Result` errors with the `ok` type (reported: [#6122](https://github.com/clockworklabs/SpacetimeDB/issues/6122))
 
 In `spacetimedb` 2.11 (`src/lib/algebraic_type.ts`, the `ok`/`err` sum serializer):
 
@@ -65,7 +65,7 @@ and the instance reported a fatal error. `t.result(t.string(), t.string())` work
 procedure in all three languages returns `Result<String, String>`, since they share one schema. The fix is a one-character
 change (`variants[1]`).
 
-## Bug: `t.result()` is typed `Ok | Err`, but the runtime wants `{ ok } | { err }`
+## Bug: `t.result()` is typed `Ok | Err`, but the runtime wants `{ ok } | { err }` (reported: [#6127](https://github.com/clockworklabs/SpacetimeDB/issues/6127))
 
 `ResultBuilder<Ok, Err>` infers its value type as `InferTypeOfTypeBuilder<Ok> | InferTypeOfTypeBuilder<Err>`, but
 the serializer (above) expects an object with an `ok` or `err` key. Returning `{ ok: … }` from a procedure therefore
