@@ -1,0 +1,9 @@
+target/
+*.wasm
+spacetime.local.json
+node_modules/
+bin/
+obj/
+.dev-server/
+demo/typescript/dist/
+demo/typescript/src/page.gen.ts

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-flavor="flat">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacetime OAuth</title>
+<style>
+:root {
+  --bg: #f6f5f2; --panel: #ffffff; --panel2: #efede8; --fg: #1d1c1a; --muted: #6b6862; --line: #dedad2;
+  --accent: #6d5bd0; --accent-fg: #ffffff; --ok: #1f9d55; --warn: #b45309; --bad: #c2410c; --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121316; --panel: #1b1d21; --panel2: #23262b; --fg: #ecebe8; --muted: #9a978f; --line: #2d3036;
+    --accent: #9d8cff; --accent-fg: #15112b; --ok: #3ddc84; --warn: #fbbf24; --bad: #ff8a65;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+button { font: inherit; color: inherit; cursor: pointer; }
+header { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--panel); }
+header h1 { font-size: 17px; margin: 0; font-weight: 650; display: flex; align-items: center; gap: 8px; }
+header h1 svg { color: var(--accent); }
+#status { font-size: 13px; color: var(--ok); }
+#status.bad { color: var(--bad); }
+#me { margin-left: auto; font: 12px var(--mono); color: var(--muted); }
+main { max-width: 880px; margin: 0 auto; padding: 28px 20px 60px; display: grid; gap: 20px; }
+.intro h2 { margin: 0 0 4px; font-size: 24px; letter-spacing: -0.02em; }
+.intro p { margin: 0; color: var(--muted); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+.panel h3 { margin: 0 0 12px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.providers { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { border: 1px solid var(--line); background: var(--panel); padding: 8px 14px; border-radius: 999px; }
+.btn:hover { background: var(--panel2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); font-weight: 600; }
+.btn.small { padding: 4px 11px; font-size: 13px; }
+.btn.danger { color: var(--bad); }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.hint { color: var(--muted); font-size: 13px; }
+#api-title { text-transform: none; letter-spacing: 0; font: 12px var(--mono); margin-left: 6px; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip { font-size: 12px; padding: 2px 10px; border-radius: 999px; background: var(--panel2); color: var(--muted); }
+.empty { color: var(--muted); padding: 6px 0; }
+.account { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.account:first-of-type { border-top: 0; }
+.avatar { width: 42px; height: 42px; border-radius: 12px; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-weight: 700; }
+.who { font-weight: 650; }
+.meta { font-size: 13px; color: var(--muted); }
+.meta code { font: 12px var(--mono); background: var(--panel2); padding: 1px 6px; border-radius: 5px; }
+.badge { font-size: 12px; padding: 1px 8px; border-radius: 999px; margin-left: 6px; }
+.badge.ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.badge.relink { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
+.actions { display: flex; gap: 8px; }
+pre { margin: 0; font: 12.5px/1.5 var(--mono); background: var(--panel2); border-radius: 10px; padding: 12px 14px; overflow: auto; max-height: 220px; white-space: pre-wrap; word-break: break-word; }
+#log { display: grid; gap: 4px; font: 12.5px var(--mono); }
+#log .e { color: var(--muted); }
+#log .e b { color: var(--fg); font-weight: 500; }
+#log .e.err b { color: var(--bad); }
+.secure { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.secure div { font-size: 13px; color: var(--muted); }
+.secure b { display: block; color: var(--fg); font-size: 14px; }
+@media (max-width: 600px) {
+  .account { grid-template-columns: auto 1fr; }
+  .actions { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg> Spacetime OAuth</h1>
+  <span id="status">connecting…</span>
+  <span id="me"></span>
+</header>
+<main>
+  <div class="intro">
+    <h2>Linked accounts</h2>
+    <p>Link a third-party account to your SpacetimeDB identity. Tokens stay in private tables; you only ever see who you're linked as.</p>
+  </div>
+  <section class="panel">
+    <h3>Link an account</h3>
+    <div class="providers">
+      <button class="btn primary" id="link">Link Mock Provider</button>
+      <button class="btn" id="link-redirect">…or with a full-page redirect</button>
+    </div>
+    <div class="presets"><span class="hint">Presets ready in <code>OAUTH_CONFIG</code>:</span><span class="chip">Twitch</span><span class="chip">Discord</span><span class="chip">Google</span><span class="chip">GitHub</span><span class="chip">Spotify</span><span class="chip">any OAuth 2.0</span></div>
+  </section>
+  <section class="panel">
+    <h3>Your accounts</h3>
+    <div id="accounts"><div class="empty">Nothing linked yet.</div></div>
+  </section>
+  <section class="panel" id="api-panel" hidden>
+    <h3>API response <span class="hint" id="api-title"></span></h3>
+    <pre id="api"></pre>
+  </section>
+  <section class="panel">
+    <h3>Activity</h3>
+    <div id="log"></div>
+  </section>
+  <section class="panel secure">
+    <div><b>PKCE + single-use state</b>Bound to your identity, expires in minutes.</div>
+    <div><b>You finish the link</b>The code comes back to this page, which completes on your own connection.</div>
+    <div><b>Tokens never leave the module</b>Private tables; refreshed on a schedule and on 401.</div>
+  </section>
+</main>
+<script type="module">/*BUNDLE*/</script>
+</body>
+</html>
