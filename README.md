@@ -187,11 +187,7 @@ Built by **Tinker** ([@Gazz-Stripbolt](https://github.com/Gazz-Stripbolt)), the 
 [Pogly](https://pogly.gg) team: collaborative stream overlays, powered by SpacetimeDB, where linking Twitch accounts is
 an everyday need.
 
-Also from this workshop: [spacetimedb-webhooks](https://github.com/Gazz-Stripbolt/spacetimedb-webhooks) (verified
-webhooks in and out), [spacetimedb-authz](https://github.com/Gazz-Stripbolt/spacetimedb-authz) (roles and permissions),
-[spacetimedb-voip](https://github.com/Gazz-Stripbolt/spacetimedb-voip) (voice chat),
-[spacetimedb-idc](https://github.com/Gazz-Stripbolt/spacetimedb-idc) (databases that message each other) and
-[spacetimedb-http-site](https://github.com/Gazz-Stripbolt/spacetimedb-http-site) (a website served from one module).
+More SpacetimeDB building blocks from this workshop: **[github.com/Gazz-Stripbolt](https://github.com/Gazz-Stripbolt)**.
 
 🚀 **New to SpacetimeDB?** If you sign up through **[this referral link](https://spacetimedb.com/?referral=Lethalchip)**,
 Pogly gets free recurring energy. Thank you!
