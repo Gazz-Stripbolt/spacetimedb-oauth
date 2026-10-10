@@ -1,6 +1,6 @@
 // Demo web client: link a Mock Provider account, see it, call its API, unlink it.
 // Served by the demo module at /route/, or open dist/index.html with ?host=ws://...&db=...
-import { linkAccount, linkByRedirect, completeFromRedirect } from 'spacetimedb-oauth-client';
+import { linkAccount, linkByRedirect, completeFromRedirect } from '@pogly/spacetimedb-oauth-client';
 import { connect, type Flavor, type OAuthApi } from './api';
 
 const params = new URLSearchParams(location.search);

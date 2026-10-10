@@ -3,7 +3,7 @@
  * submodule. Same behaviour as demo/rust and demo/csharp; serves the web client at /route/.
  */
 import { schema, t, Router, SyncResponse } from 'spacetimedb/server';
-import * as oauth from 'spacetimedb-oauth';
+import * as oauth from '@pogly/spacetimedb-oauth';
 import PAGE from './page.gen';
 
 const spacetimedb = schema(

@@ -7,3 +7,5 @@ obj/
 .dev-server/
 demo/typescript/dist/
 demo/typescript/src/page.gen.ts
+client/dist/
+/typescript/dist/

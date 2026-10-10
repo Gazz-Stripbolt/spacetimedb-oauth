@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "spacetimedb": "2.11.*",
-    "spacetimedb-oauth": "0.1.0"
+    "@pogly/spacetimedb-oauth": "0.1.0"
   },
   "devDependencies": {
     "typescript": "^5.9.0"

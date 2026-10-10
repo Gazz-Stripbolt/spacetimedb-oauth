@@ -4,7 +4,7 @@ The browser side of linking, in three functions. It doesn't depend on your gener
 `oauth_begin` and `oauth_complete` calls in.
 
 ```ts
-import { linkAccount, linkByRedirect, completeFromRedirect } from 'spacetimedb-oauth-client';
+import { linkAccount, linkByRedirect, completeFromRedirect } from '@pogly/spacetimedb-oauth-client';
 
 const unwrap = async (p) => { const r = await p; if ('err' in r) throw new Error(r.err); return r.ok; };
 const opts = {
@@ -25,4 +25,6 @@ const login = await completeFromRedirect(opts.complete);   // null if this load 
 callback's origin and only for its own `state`, and rejects if the user closes the popup. For redirect mode, keep your
 SpacetimeDB token across the page load: the identity that finishes must be the one that started.
 
-Not on npm yet: copy `src/` or add this folder as a workspace package.
+```bash
+npm install @pogly/spacetimedb-oauth-client
+```

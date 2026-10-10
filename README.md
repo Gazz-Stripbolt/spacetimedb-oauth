@@ -123,7 +123,7 @@ provider. Real providers require **https** redirect URIs (except for localhost),
 Then, in the browser (from a click):
 
 ```ts
-import { linkAccount } from 'spacetimedb-oauth-client';
+import { linkAccount } from '@pogly/spacetimedb-oauth-client';
 const unwrap = async (p) => { const r = await p; if ('err' in r) throw new Error(r.err); return r.ok; };
 
 const login = await linkAccount({
