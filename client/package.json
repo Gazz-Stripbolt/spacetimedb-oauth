@@ -1,6 +1,6 @@
 {
   "name": "@pogly/spacetimedb-oauth-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Browser helpers for spacetimedb-oauth: link a third-party account by popup or redirect and finish it on your own SpacetimeDB connection.",
   "license": "MIT",
   "type": "module",
