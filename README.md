@@ -12,6 +12,7 @@ client works with all three.
 [![CI](https://github.com/Gazz-Stripbolt/spacetimedb-oauth/actions/workflows/ci.yml/badge.svg)](https://github.com/Gazz-Stripbolt/spacetimedb-oauth/actions/workflows/ci.yml)
 ![SpacetimeDB 2.11](https://img.shields.io/badge/SpacetimeDB-2.11-e8730c)
 ![TypeScript submodule](https://img.shields.io/badge/TypeScript-submodule-3178c6)
+[![npm](https://img.shields.io/npm/v/@pogly/spacetimedb-oauth?label=npm%20%40pogly%2Fspacetimedb-oauth&color=cb3837)](https://www.npmjs.com/package/@pogly/spacetimedb-oauth)
 ![Rust](https://img.shields.io/badge/Rust-drop--in-b7410e)
 ![C#](https://img.shields.io/badge/C%23-drop--in-512bd4)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
@@ -31,7 +32,7 @@ client works with all three.
 |---|---|
 | **Rust**: add account linking to a Rust module | [`rust/`](rust): `oauth.rs`, one drop-in file |
 | **C#**: add it to a C# module | [`csharp/`](csharp): `OAuth.cs`, one drop-in file |
-| **TypeScript**: add it to a TS module, as a **submodule** | [`typescript/`](typescript): the `spacetimedb-oauth` submodule |
+| **TypeScript**: add it to a TS module, as a **submodule** | [`typescript/`](typescript): `npm install @pogly/spacetimedb-oauth` ([npm](https://www.npmjs.com/package/@pogly/spacetimedb-oauth)) |
 | **The browser side**: popup or redirect linking in three lines | [`client/`](client): `linkAccount()` |
 | **See it working**: link, call an API, unlink | [`demo/`](demo): one demo per language, a shared page and a mock provider |
 | **The exact schema, routes and messages**, to write another client | [`docs/PROTOCOL.md`](docs/PROTOCOL.md) |
