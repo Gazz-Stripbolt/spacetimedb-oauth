@@ -21,6 +21,6 @@
     "typescript": "^5.9.0"
   },
   "dependencies": {
-    "spacetimedb": "2.11.*"
+    "spacetimedb": "2.12.*"
   }
 }

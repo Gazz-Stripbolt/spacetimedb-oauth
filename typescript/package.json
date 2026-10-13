@@ -1,6 +1,6 @@
 {
   "name": "@pogly/spacetimedb-oauth",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "OAuth account linking and a token vault for SpacetimeDB, as a submodule: authorization code + PKCE, private tokens, scheduled refresh. Same schema and clients as oauth.rs / OAuth.cs.",
   "license": "MIT",
   "type": "module",
@@ -44,10 +44,10 @@
     "@noble/hashes": "^1.8.0"
   },
   "peerDependencies": {
-    "spacetimedb": "2.11.*"
+    "spacetimedb": "2.11.* || 2.12.*"
   },
   "devDependencies": {
-    "spacetimedb": "2.11.*",
+    "spacetimedb": "2.12.*",
     "typescript": "^5.9.0"
   },
   "publishConfig": {
