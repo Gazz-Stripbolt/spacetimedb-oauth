@@ -50,17 +50,24 @@ export function connect(flavor: Flavor, host: string, db: string, token?: string
   });
 }
 
+/**
+ * Look up a submodule accessor such as `oauth.my_accounts`. SDK 2.11 keys them flat (`db['oauth.my_accounts']`);
+ * 2.12 nests them (`db.oauth.myAccounts`). Path segments are tried as written, then camelCased.
+ */
+const at = (o: any, path: string): any =>
+  o[path] ?? path.split('.').reduce((x, k) => x?.[k] ?? x?.[k.replace(/_([a-z])/g, (_m, c) => c.toUpperCase())], o);
+
 function wrap(flavor: Flavor, conn: Conn, identity: Identity, token: string): OAuthApi {
   const ns = flavor === 'ns';
   const d = conn.db as any;
   const p = conn.procedures as any;
-  const proc = (flat: string, nsName: string) => p[ns ? nsName : flat];
+  const proc = (flat: string, nsName: string) => (ns ? at(p, nsName) : p[flat]);
   return {
     flavor,
     conn,
     identity,
     token,
-    accounts: ns ? d['oauth.my_accounts'] : d.oauthMyAccounts,
+    accounts: ns ? at(d, 'oauth.my_accounts') : d.oauthMyAccounts,
     accountsSql: ns ? 'oauth.my_accounts' : 'oauth_my_accounts',
     begin: (provider, scopes = '', returnTo = '') => unwrap(proc('oauthBegin', 'oauth.begin')({ provider, scopes, returnTo })),
     complete: (state, code) => unwrap(proc('oauthComplete', 'oauth.complete')({ state, code })),
