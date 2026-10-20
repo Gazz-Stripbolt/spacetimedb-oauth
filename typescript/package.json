@@ -40,6 +40,9 @@
   "bugs": {
     "url": "https://github.com/Gazz-Stripbolt/spacetimedb-oauth/issues"
   },
+  "submodule": {
+    "category": "auth"
+  },
   "dependencies": {
     "@noble/hashes": "^1.8.0"
   },
