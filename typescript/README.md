@@ -1,6 +1,6 @@
 # spacetimedb-oauth for TypeScript (submodule)
 
-OAuth account linking as a **SpacetimeDB submodule**: PKCE, private tokens, scheduled refresh.
+OAuth account linking as a **Spacetime submodule**: PKCE, private tokens, scheduled refresh.
 
 Source: [`src/index.ts`](src/index.ts) · Complete example: [`demo/typescript`](../demo/typescript/src/index.ts) ·
 Protocol: [`docs/PROTOCOL.md`](../docs/PROTOCOL.md)

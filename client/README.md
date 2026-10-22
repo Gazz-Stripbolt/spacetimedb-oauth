@@ -23,7 +23,7 @@ const login = await completeFromRedirect(opts.complete);   // null if this load 
 
 `linkAccount` opens the popup synchronously (so blockers allow it), accepts the callback's message only from the
 callback's origin and only for its own `state`, and rejects if the user closes the popup. For redirect mode, keep your
-SpacetimeDB token across the page load: the identity that finishes must be the one that started.
+Spacetime token across the page load: the identity that finishes must be the one that started.
 
 ```bash
 npm install @pogly/spacetimedb-oauth-client

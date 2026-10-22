@@ -2,7 +2,7 @@
 
 # 🔧 Spacetime OAuth
 
-**Link Twitch, Discord, Google, GitHub or Spotify accounts to SpacetimeDB identities, and keep their tokens fresh.**
+**Link Twitch, Discord, Google, GitHub or Spotify accounts to Spacetime identities, and keep their tokens fresh.**
 
 The OAuth 2.0 authorization code flow with PKCE, a token vault in private tables, scheduled refresh, and a
 `with_token` helper that refreshes on demand and retries on a 401. It's all inside your module, with no auth server
@@ -10,7 +10,7 @@ on the side. Available for **Rust**, **C#** and **TypeScript (as a submodule)**,
 client works with all three.
 
 [![CI](https://github.com/Gazz-Stripbolt/spacetimedb-oauth/actions/workflows/ci.yml/badge.svg)](https://github.com/Gazz-Stripbolt/spacetimedb-oauth/actions/workflows/ci.yml)
-![SpacetimeDB 2.12](https://img.shields.io/badge/SpacetimeDB-2.12-e8730c)
+![Spacetime 2.12](https://img.shields.io/badge/Spacetime-2.12-e8730c)
 ![TypeScript submodule](https://img.shields.io/badge/TypeScript-submodule-3178c6)
 [![npm](https://img.shields.io/npm/v/@pogly/spacetimedb-oauth?label=npm%20%40pogly%2Fspacetimedb-oauth&color=cb3837)](https://www.npmjs.com/package/@pogly/spacetimedb-oauth)
 ![Rust](https://img.shields.io/badge/Rust-drop--in-b7410e)
@@ -36,7 +36,7 @@ client works with all three.
 | **The browser side**: popup or redirect linking in three lines | [`client/`](client): `linkAccount()` |
 | **See it working**: link, call an API, unlink | [`demo/`](demo): one demo per language, a shared page and a mock provider |
 | **The exact schema, routes and messages**, to write another client | [`docs/PROTOCOL.md`](docs/PROTOCOL.md) |
-| **Everything we learned**: security model, SpacetimeDB quirks, two SDK bugs | [`docs/FINDINGS.md`](docs/FINDINGS.md) |
+| **Everything we learned**: security model, Spacetime quirks, two SDK bugs | [`docs/FINDINGS.md`](docs/FINDINGS.md) |
 
 CI runs the same suites against every language, with a mock OAuth provider standing in for the real ones:
 
@@ -47,7 +47,7 @@ CI runs the same suites against every language, with a mock OAuth provider stand
 
 ## Why
 
-Everyone who integrates Twitch (or Discord, or Spotify…) with SpacetimeDB writes the same plumbing, and the same bugs:
+Everyone who integrates Twitch (or Discord, or Spotify…) with Spacetime writes the same plumbing, and the same bugs:
 
 - **Tokens in a public table**, or in the client where any script can read them.
 - **Tokens that quietly expire.** Twitch's last about four hours and Google's one hour; refresh tokens rotate and
@@ -185,12 +185,12 @@ docs/                           PROTOCOL.md · FINDINGS.md · screenshots
 ## Credits
 
 Built by **Tinker** ([@Gazz-Stripbolt](https://github.com/Gazz-Stripbolt)), the resident gadgeteer for the
-[Pogly](https://pogly.gg) team: collaborative stream overlays, powered by SpacetimeDB, where linking Twitch accounts is
+[Pogly](https://pogly.gg) team: collaborative stream overlays, powered by Spacetime, where linking Twitch accounts is
 an everyday need.
 
-More SpacetimeDB building blocks from this workshop: **[github.com/Gazz-Stripbolt](https://github.com/Gazz-Stripbolt)**.
+More Spacetime building blocks from this workshop: **[github.com/Gazz-Stripbolt](https://github.com/Gazz-Stripbolt)**.
 
-🚀 **New to SpacetimeDB?** If you sign up through **[this referral link](https://spacetimedb.com/?referral=Lethalchip)**,
+🚀 **New to Spacetime?** If you sign up through **[this referral link](https://spacetimedb.com/?referral=Lethalchip)**,
 Pogly gets free recurring energy. Thank you!
 
 ## License

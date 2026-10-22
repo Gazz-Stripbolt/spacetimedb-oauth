@@ -1,6 +1,6 @@
 # Findings
 
-What we learned building OAuth account linking on SpacetimeDB 2.11: the security model, the platform's quirks, and
+What we learned building OAuth account linking on Spacetime 2.11: the security model, the platform's quirks, and
 two TypeScript SDK bugs.
 
 ## Security model
@@ -9,7 +9,7 @@ two TypeScript SDK bugs.
 identity, sends the victim the authorize URL, and the victim (already signed in at the provider) consents. If the
 callback exchanged the code itself, the victim's Twitch account would now belong to the attacker's identity. So the
 callback never redeems anything. It hands `state` + `code` to the app, and the app calls `oauth_complete` over its own
-SpacetimeDB connection, where the module can check that `ctx.sender` is the identity that began. In the phishing
+Spacetime connection, where the module can check that `ctx.sender` is the identity that began. In the phishing
 scenario the code lands in the victim's browser, and only the attacker could redeem the state.
 
 **PKCE everywhere.** The code is useless without the verifier, which never leaves the module. A test checks that a
@@ -30,7 +30,7 @@ and checks it receives nothing.
 needs none of the event-table RLS gymnastics from [spacetimedb-voip](https://github.com/Gazz-Stripbolt/spacetimedb-voip).
 A test checks that subscribing to the token, account or state tables is refused.
 
-## SpacetimeDB quirks
+## Spacetime quirks
 
 - **HTTP handlers *can* make outbound requests** (`ctx.http` exists on `HandlerContext`). We deliberately don't use it
   in the callback, because finishing on the client's connection is the security property above. The token exchange
@@ -79,5 +79,5 @@ needs a cast. With the type as written, there's no way to tell `ok` from `err` w
 - **COOP can cut the popup off.** If a provider's pages send `Cross-Origin-Opener-Policy: same-origin`, the popup loses
   `window.opener` for good, even after it navigates back to our callback. The page then says "Return to the app", and
   redirect mode is the fallback. This hasn't been tried against the real providers yet; the tests use the mock.
-- **Redirect mode has to keep the identity.** The page that comes back must use the same SpacetimeDB token as the one
+- **Redirect mode has to keep the identity.** The page that comes back must use the same Spacetime token as the one
   that started, or `oauth_complete` is (rightly) refused. The demo keeps its token in `localStorage`.

@@ -13,7 +13,7 @@ scripts/e2e.sh rust                              # starts the mock provider, pub
 Or by hand: `node tests/mock-provider.mjs --port 4110`, then publish with an `OAUTH_CONFIG` pointing at it (copy the one
 in [`scripts/e2e.sh`](../scripts/e2e.sh)) and open `http://127.0.0.1:3000/v1/database/oauth-rust/route/`.
 
-Why a special server build? Standalone SpacetimeDB blocks module HTTP to loopback and private addresses (SSRF
+Why a special server build? Standalone Spacetime blocks module HTTP to loopback and private addresses (SSRF
 protection), and the mock provider runs on localhost. On Maincloud, with real providers, you don't need any of this.
 
 The mock provider ([`tests/mock-provider.mjs`](../tests/mock-provider.mjs)) implements authorization code + PKCE (S256),
