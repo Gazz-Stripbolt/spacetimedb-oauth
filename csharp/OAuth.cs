@@ -56,7 +56,15 @@ public static partial class Module
         public string OAUTH_SECRET;
     }
 
-    static ModuleEnvironment OauthEnv => default;
+    // ModuleEnvironment isn't generated on .NET 10, where only ctx.Env has these fields, and this
+    // code often has no ctx. DatabaseEnvironment.Get works on every target.
+    readonly struct OauthEnvValues
+    {
+        public string OAUTH_CONFIG => default(DatabaseEnvironment).Get("OAUTH_CONFIG") ?? throw new InvalidOperationException("Required environment value is absent");
+        public string OAUTH_SECRET => default(DatabaseEnvironment).Get("OAUTH_SECRET") ?? throw new InvalidOperationException("Required environment value is absent");
+    }
+
+    static OauthEnvValues OauthEnv => default;
 
     static readonly TimeSpan OauthHttpTimeout = TimeSpan.FromSeconds(10);
     const long OauthLeaseUs = 30L * 1_000_000;
