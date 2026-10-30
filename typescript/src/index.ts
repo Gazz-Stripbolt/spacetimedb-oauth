@@ -269,16 +269,12 @@ export const myAccounts = spacetimedb.view({ name: 'my_accounts', public: true }
 );
 
 type Res<T> = { ok: T } | { err: string };
-/**
- * Run `f` and return its result as a SpacetimeDB `Result`. The runtime serializes `{ ok }` /
- * `{ err }`, but 2.11's `t.result()` types its value as `Ok | Err`, hence the cast.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const attempt = <T>(f: () => T): any => {
+/** Run `f` and return its result as a SpacetimeDB `Result`. */
+const attempt = <T>(f: () => T): Res<T> => {
   try {
-    return { ok: f() } satisfies Res<T>;
+    return { ok: f() };
   } catch (e) {
-    return { err: String((e as Error)?.message ?? e) } satisfies Res<T>;
+    return { err: String((e as Error)?.message ?? e) };
   }
 };
 
@@ -341,9 +337,6 @@ export const begin = spacetimedb.procedure(
 /**
  * Finish linking with the `state` and `code` from the callback. Only the identity that began can
  * finish. Returns the linked login; `my_accounts` has the details.
- *
- * Every procedure here returns `t.result(t.string(), t.string())`: in 2.11 the TS serializer
- * writes `err` with the `ok` side's type, so a Result whose sides differ can't return an error.
  */
 export const complete = spacetimedb.procedure(
   { state: t.string(), code: t.string() },

@@ -36,10 +36,9 @@ export const demoProfile = spacetimedb.procedure(
   (ctx, { provider, url }) => {
     try {
       const r = oauth.get(ctx.as.oauth, ctx.sender, provider, url);
-      // `t.result()` values are `{ ok }` / `{ err }` at runtime; 2.11 types them as `Ok | Err`.
-      return (r.status >= 400 ? { err: `${r.status}: ${r.body}` } : { ok: r.body }) as unknown as string;
+      return r.status >= 400 ? { err: `${r.status}: ${r.body}` } : { ok: r.body };
     } catch (e) {
-      return { err: String((e as Error).message) } as unknown as string;
+      return { err: String((e as Error).message) };
     }
   }
 );

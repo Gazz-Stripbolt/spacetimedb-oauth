@@ -283,9 +283,7 @@ public static partial class Module
 
     /// <summary>
     /// Finish linking with the state and code from the callback. Only the identity that began can
-    /// finish. Returns the linked login; oauth_my_accounts has the details. (Every procedure here
-    /// returns Result&lt;string, string&gt;: the TypeScript submodule can't return a Result whose two
-    /// sides differ in 2.11, and all three languages share one schema.)
+    /// finish. Returns the linked login; oauth_my_accounts has the details.
     /// </summary>
     [SpacetimeDB.Procedure]
     public static Result<string, string> OauthComplete(ProcedureContext ctx, string state, string code)
