@@ -1,6 +1,6 @@
 {
   "name": "@pogly/spacetimedb-oauth",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "OAuth account linking and a token vault for SpacetimeDB, as a submodule: authorization code + PKCE, private tokens, scheduled refresh. Same schema and clients as oauth.rs / OAuth.cs.",
   "license": "MIT",
   "type": "module",
