@@ -5,7 +5,7 @@
 //! two env vars, and register the callback route:
 //!
 //! ```toml
-//! spacetimedb = { version = "2.11.*", features = ["unstable"] }
+//! spacetimedb = { version = "2.14.*", features = ["unstable"] }
 //! http = "1"
 //! serde_json = "1"
 //! sha2 = "0.10"
@@ -441,9 +441,6 @@ pub fn oauth_begin(
 /// Finish linking with the `state` and `code` the callback page handed back. Only the identity
 /// that called `oauth_begin` can complete it. Returns the linked login; `oauth_my_accounts` has
 /// the details.
-///
-/// (Every procedure here returns `Result<String, String>`: the TypeScript submodule can't return
-/// a `Result` whose two sides differ in 2.11, and all three languages share one schema.)
 #[spacetimedb::procedure]
 pub fn oauth_complete(
     ctx: &mut ProcedureContext,

@@ -10,7 +10,7 @@ on the side. Available for **Rust**, **C#** and **TypeScript (as a submodule)**,
 client works with all three.
 
 [![CI](https://github.com/Gazz-Stripbolt/spacetimedb-oauth/actions/workflows/ci.yml/badge.svg)](https://github.com/Gazz-Stripbolt/spacetimedb-oauth/actions/workflows/ci.yml)
-![Spacetime 2.12](https://img.shields.io/badge/Spacetime-2.12-e8730c)
+![Spacetime 2.14](https://img.shields.io/badge/Spacetime-2.14-e8730c)
 ![TypeScript submodule](https://img.shields.io/badge/TypeScript-submodule-3178c6)
 [![npm](https://img.shields.io/npm/v/@pogly/spacetimedb-oauth?label=npm%20%40pogly%2Fspacetimedb-oauth&color=cb3837)](https://www.npmjs.com/package/@pogly/spacetimedb-oauth)
 ![Rust](https://img.shields.io/badge/Rust-drop--in-b7410e)
@@ -157,9 +157,10 @@ and `eager_refresh` (`false` refreshes only when a token is used).
 
 ## Good to know
 
+- **Needs a 2.14 host.** Modules built with the 2.14 libraries export a changed HTTP handler ABI, and older hosts reject
+  them ([release notes](https://github.com/clockworklabs/SpacetimeDB/releases/tag/v2.14.0)).
 - **Procedures return `Result<String, String>`** (`{ ok } | { err }` on the client). `oauth_complete` returns the
-  linked login; read the details from `oauth_my_accounts`. Typed results would have been nicer, but a bug in the 2.11
-  TS SDK makes the submodule unable to return any other kind of error ([FINDINGS](docs/FINDINGS.md)).
+  linked login; read the details from `oauth_my_accounts`.
 - **One account per provider per identity, and one identity per external account.** Re-linking replaces the old
   account, and linking an account someone else already has is refused (and the new grant revoked).
 - **Popups and COOP:** some providers' pages cut the popup's link to its opener. If the popup ends on "Return to the

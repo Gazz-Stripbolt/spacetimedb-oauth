@@ -4,7 +4,7 @@ One file. Copy [`oauth.rs`](oauth.rs) to your module's `src/oauth.rs`, then:
 
 ```toml
 # Cargo.toml (HTTP handlers need `unstable`)
-spacetimedb = { version = "2.12.*", features = ["unstable"] }
+spacetimedb = { version = "2.14.*", features = ["unstable"] }
 http = "1"
 serde_json = "1"
 sha2 = "0.10"

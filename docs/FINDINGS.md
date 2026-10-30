@@ -52,6 +52,8 @@ A test checks that subscribing to the token, account or state tables is refused.
 
 ## Bug: the TS SDK serializes `Result` errors with the `ok` type (reported: [#6122](https://github.com/clockworklabs/SpacetimeDB/issues/6122))
 
+**Fixed in 2.13 ([#6148](https://github.com/clockworklabs/SpacetimeDB/pull/6148)), along with the typing bug below.** The string,string rule and the `attempt()` cast are gone. The procedures keep their `Result<String, String>` signatures, so the schema doesn't change. What follows is the history.
+
 In `spacetimedb` 2.11 (`src/lib/algebraic_type.ts`, the `ok`/`err` sum serializer):
 
 ```ts
